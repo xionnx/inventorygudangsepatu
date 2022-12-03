@@ -22,7 +22,7 @@ def main():
             break
         elif pilihanUser == '3':
             break
-        else :
+        else:
             print("Pilihan tidak ada, silahkan masukkan nomor lagi")
             continue
 
@@ -45,9 +45,15 @@ def tambahBarang():
         jumlahBarang = input("Jumlah Barang : ")
         if jumlahBarang.isdigit():
             break
-    itemsArray = {barangUser: {"s" + sizeBarang: jumlahBarang}}
-    items.update(itemsArray)
-    returnToMainMenu("Barangmu telah ditambahkan!")
+
+    if barangUser in items:
+        itemsArray = {"s" + sizeBarang: jumlahBarang}
+        items[barangUser].update(itemsArray)
+        returnToMainMenu("Barangmu telah ditambahkan!")
+    else:
+        itemsArray = {barangUser: {"s" + sizeBarang: jumlahBarang}}
+        items.update(itemsArray)
+        returnToMainMenu("Barangmu telah ditambahkan!")
 
 
 def lihatInventory():
@@ -67,7 +73,7 @@ def lihatInventory():
     print("========================================")
     print("        Pilihan yang tersedia :         ")
     print("========================================")
-    print("[1] - Tambah/Kurang Stok Barang")
+    print("[1] - Edit Nama/Size/Jumlah Barang")
     print("[2] - Hapus Barang")
     print("[3] - Kembali ke Menu")
     print()
@@ -82,14 +88,14 @@ def lihatInventory():
         elif pilihanUser == '3':
             main()
             break
-        else :
+        else:
             print("Pilihan tidak ada, silahkan masukkan nomor lagi")
             continue
-            
+
 
 def editInventoryItem():
     print()
-    print("TAMBAH/KURANG STOK BARANG")
+    print("EDIT NAMA/SIZE/JUMLAH BARANG")
     print("-------------------------")
     print("========================================")
     print("        Pilihan yang tersedia :         ")
@@ -136,7 +142,8 @@ def editInventoryItem():
                 print()
 
         while True:
-            sizeToChange = "s" + input("Masukkan Ukuran Barang Yang Ingin Di Ubah : ")
+            sizeToChange = "s" + \
+                input("Masukkan Ukuran Barang Yang Ingin Di Ubah : ")
             if sizeToChange in items[itemToChange]:
                 break
             else:
@@ -168,7 +175,8 @@ def editInventoryItem():
                 print()
 
         while True:
-            sizeToChange = "s" + input("Masukkan Ukuran Barang Yang Ingin Di Ubah : ")
+            sizeToChange = "s" + \
+                input("Masukkan Ukuran Barang Yang Ingin Di Ubah : ")
             if sizeToChange in items[itemToChange]:
                 break
             else:
